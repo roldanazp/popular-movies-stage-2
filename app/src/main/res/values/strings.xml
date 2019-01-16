@@ -1,0 +1,24 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- TODO limpia los string harcodeados -->
+    <string name="app_name">Popular Movies</string>
+
+
+    <string name="movies_by">By <xliff:g id="searchType">%1$s</xliff:g></string>
+
+    <string name="youtube_watch_url">https://www.youtube.com/watch?v=<xliff:g id="key">%1$s</xliff:g></string>
+
+    <string name="movie_original_title">Original Title</string>
+    <string name="movie_release_date">Release date</string>
+    <string name="movie_overview">Synopsis</string>
+    <string name="movie_vote_average">Rating</string>
+    <string name="loading_problem">Loading Problem : (</string>
+
+    <string name="cd_status_image">Status Image</string>
+    <string name="cd_movie_poster">Movie Poster</string>
+    <string name="search_popularity">Popularity</string>
+    <string name="search_vote_average">Vote Average</string>
+    <string name="load_favorites">Favorites</string>
+    <string name="favorite_movie">Favorite Movie</string>
+    <string name="movie_title">Title</string>
+
+</resources>

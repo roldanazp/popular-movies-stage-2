@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="self"
+            type="com.roldannanodegre.popularmovies.databinding.MovieListItemBinding"/>
+        <variable
+            name="movie"
+            type="com.roldannanodegre.popularmovies.database.MovieEntity"/>
+        <variable
+            name="listener"
+            type="com.roldannanodegre.popularmovies.adapters.MoviesAdapter.MovieItemListener"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.roldannanodegre.popularmovies.MoviesActivity"
+        android:onClick="@{view -> listener.onMovieSelected(movie, self)}">
+
+
+        <ImageView
+            android:id="@+id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_broken_image"
+            android:contentDescription="@string/cd_status_image"/>
+
+        <ImageView
+            android:id="@+id/iv_movie_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/cd_movie_poster"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_background"/>
+
+        <ProgressBar
+            android:id="@+id/pb_download_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_movie_image"
+            app:layout_constraintEnd_toEndOf="@+id/iv_movie_image"
+            app:layout_constraintStart_toStartOf="@+id/iv_movie_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_movie_image" />
+
+
+        <ImageView
+            android:id="@+id/im_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@{movie.favorite ? @android:drawable/star_big_on : null }"
+            android:contentDescription="@string/favorite_movie"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movie"
+            type="com.roldannanodegre.popularmovies.database.MovieEntity" />
+        <variable
+            name="listener"
+            type="com.roldannanodegre.popularmovies.MovieDetailActivity.MovieInteractionListener"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        tools:context=".MovieDetailActivity">
+
+        <include
+            android:id="@+id/image_layout"
+            layout="@layout/movie_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/im_videos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:movie="@{movie}" />
+
+        <ImageButton
+            android:id="@+id/im_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:alpha='@{reviews==null?Float.valueOf("0.5"):Float.valueOf("1")}'
+            android:clickable="@{!(reviews==null)}"
+            android:onClick="@{view -> listener.onVideosClick(videos)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/im_overvies"
+            app:layout_constraintStart_toStartOf="@+id/image_layout"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:srcCompat="@drawable/ic_ondemand_video_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/im_overvies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view -> listener.onReviewsClick(reviews)}"
+            app:layout_constraintEnd_toStartOf="@+id/im_favorite"
+            app:layout_constraintStart_toEndOf="@+id/im_videos"
+            app:layout_constraintTop_toTopOf="@+id/im_videos"
+            app:srcCompat="@drawable/ic_rate_review_black_24dp"
+            android:clickable="@{!(reviews==null)}"
+            android:alpha='@{reviews==null?Float.valueOf("0.5"):Float.valueOf("1")}'/>
+
+        <ImageButton
+            android:id="@+id/im_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view -> listener.onFavoriteClick(movie)}"
+            app:layout_constraintBottom_toBottomOf="@+id/im_videos"
+            app:layout_constraintEnd_toEndOf="@+id/image_layout"
+            app:layout_constraintStart_toEndOf="@+id/im_overvies"
+            app:layout_constraintTop_toTopOf="@+id/im_videos"
+            app:srcCompat="@{movie.favorite ? @drawable/ic_star_border_black_24dp : @drawable/ic_star_black_24dp }" />
+
+
+        <TextView
+            android:id="@+id/tv_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_title"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:maxWidth="150dp"
+            android:text="@{movie.title}"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_original_title"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/image_layout"
+            app:layout_constraintTop_toTopOf="@+id/image_layout"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="Lo que el viento se llevo" />
+
+        <TextView
+            android:id="@+id/tv_original_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_original_title"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_original_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_original_title" />
+
+        <TextView
+            android:id="@+id/tv_original_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:maxWidth="150dp"
+            android:text="@{movie.originalTitle}"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_release_date"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/image_layout"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="Lo que el viento se llevo" />
+
+        <TextView
+            android:id="@+id/tv_release_date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_release_date"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_release_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_release_date" />
+
+        <TextView
+            android:id="@+id/tv_release_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxWidth="100dp"
+            android:text="@{movie.releaseDate}"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_rating"
+            app:layout_constraintStart_toStartOf="@+id/tv_original_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_original_title"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="10/10/2018" />
+
+        <TextView
+            android:id="@+id/tv_rating_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_vote_average"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_rating"
+            app:layout_constraintStart_toStartOf="@+id/tv_rating" />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:maxWidth="100dp"
+            android:text="@{String.valueOf(movie.voteAverage)}"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/im_videos"
+            app:layout_constraintStart_toStartOf="@+id/tv_original_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_release_date"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="4.5" />
+
+
+        <ScrollView
+            android:id="@+id/sv_overview_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/im_videos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintTop_toTopOf="@+id/image_layout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(movie.overview)}"
+                android:textColor="@color/colorAccent"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+        </ScrollView>
+
+
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tv_original_title,tv_release_date,tv_rating,tv_original_title_label,tv_release_date_label,tv_rating_label" />
+
+        <TextView
+            android:id="@+id/tv_overview_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/movie_overview"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/sv_overview_container"
+            app:layout_constraintStart_toStartOf="@+id/sv_overview_container" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/popularity"
+        android:title="@string/search_popularity"
+        app:showAsAction="never"/>
+    <item android:id="@+id/vote_average"
+        android:title="@string/search_vote_average"
+        app:showAsAction="never"
+        android:checked="true"/>
+
+    <item android:id="@+id/favorite"
+        android:title="@string/load_favorites"
+        app:showAsAction="never"/>
+</menu>

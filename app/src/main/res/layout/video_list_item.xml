@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="video"
+            type="com.roldannanodegre.popularmovies.database.VideoEntity"/>
+        <variable
+            name="listener"
+            type="com.roldannanodegre.popularmovies.adapters.VideosAdapter.VideosItemListener"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.roldannanodegre.popularmovies.MovieDetailActivity"
+        android:onClick="@{view -> listener.onVideoSelected(video)}"
+        card_view:cardElevation="5dp"
+        android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/tv_video_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="vieo for the movie"
+                android:text="@{video.name}"
+                android:padding="10dp"
+                android:background="?attr/selectableItemBackground"/>
+    </android.support.v7.widget.CardView>
+
+</layout>
